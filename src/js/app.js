@@ -1,20 +1,61 @@
-const buttons = document.querySelectorAll("[data-btn]");
+const testimonials = document.querySelectorAll(".testimonial");
 
-buttons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const offset = btn.dataset.carouselBtn === "next" ? 1 : -1;
+const btns = document.querySelectorAll(".btn");
 
-    const slides = btn
-      .closest("[data-carousel]")
-      .querySelector("[data-slides]");
+btns.forEach((btn) => {
+  btn.addEventListener("click", () => slide(btn));
+});
 
-    const activeSlide = slides.querySelector("[data-active]");
-    const nextIndex = [...slides.children].indexOf(activeSlide) + offset;
+function slide(btn) {
+  const offset = btn.dataset.carouselBtn === "next" ? 1 : -1;
 
-    if (nextIndex < 0) nextIndex = slides.children.length - 1;
-    if (nextIndex >= slides.children.length) nextIndex = 0;
+  const testimonies = btn.closest(".main");
 
-    slides.children[nextIndex].dataset.active = true;
-    delete activeSlide.dataset.active;
-  });
+  const activeTestimony = testimonies.querySelector("[data-active]");
+
+  let nextIndex = [...testimonies.children].indexOf(activeTestimony) + offset;
+
+  if (nextIndex < 0) nextIndex = testimonies.children.length - 1;
+  if (nextIndex >= testimonies.children.length) nextIndex = 0;
+
+  testimonies.children[nextIndex].dataset.active = true;
+  delete activeTestimony.dataset.active;
+}
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") {
+    btns.forEach((btn) => {
+      const offset = btn.dataset.carouselBtn === "next" ? 1 : -1;
+
+      const testimonies = btn.closest(".main");
+
+      const activeTestimony = testimonies.querySelector("[data-active]");
+
+      let nextIndex =
+        [...testimonies.children].indexOf(activeTestimony) + offset;
+
+      if (nextIndex < 0) nextIndex = testimonies.children.length - 1;
+      if (nextIndex >= testimonies.children.length) nextIndex = 0;
+
+      testimonies.children[nextIndex].dataset.active = true;
+      activeTestimony.dataset.active = false;
+    });
+  } else if (e.key === "ArrowLeft") {
+    btns.forEach((btn) => {
+      const offset = btn.dataset.carouselBtn === "next" ? 1 : -1;
+
+      const testimonies = btn.closest(".main");
+
+      const activeTestimony = testimonies.querySelector("[data-active]");
+
+      let nextIndex =
+        [...testimonies.children].indexOf(activeTestimony) + offset;
+
+      if (nextIndex < 0) nextIndex = testimonies.children.length - 1;
+      if (nextIndex >= testimonies.children.length) nextIndex = 0;
+
+      testimonies.children[nextIndex].dataset.active = false;
+      activeTestimony.dataset.active = true;
+    });
+  }
 });
