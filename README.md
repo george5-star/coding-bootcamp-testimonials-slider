@@ -68,7 +68,7 @@ Css Positions, transitions, animations.
 
 ### Useful resources
 
-- [Web Dev Simplified](https://www.example.com) - I watched this web dev simplified video on youtube to understand how to implement the carousel.
+- [Web Dev Simplified](https://www.youtube.com/@WebDevSimplified/videos) - I watched this web dev simplified video on youtube to understand how to implement the carousel.
 
 ## Author
 
